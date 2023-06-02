@@ -1,7 +1,8 @@
 import * as mongoDB from "mongodb";
 import * as dotenv from "dotenv";
+import AlertaLog from "../model/alertaLog";
 
-export const collections: { alertas?: mongoDB.Collection } = {}
+export const collections: { alertas?: mongoDB.Collection<AlertaLog> } = {}
 
 export async function connectToDatabase () {
     dotenv.config();
@@ -12,7 +13,7 @@ export async function connectToDatabase () {
         
     const db: mongoDB.Db = client.db(process.env.DB_NAME);
    
-    const alertaLogsCollection: mongoDB.Collection = db.collection(process.env.ALERTALOG_COLLECTION_NAME);
+    const alertaLogsCollection: mongoDB.Collection<AlertaLog> = db.collection(process.env.ALERTALOG_COLLECTION_NAME);
  
     collections.alertas = alertaLogsCollection;
        
