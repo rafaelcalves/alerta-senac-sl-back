@@ -1,7 +1,5 @@
 import * as express from "express"
 import * as cors from "cors"
-import { Request, Response } from "express"
-import { ObjectId } from "mongodb"
 import { collections } from "../services/database.service"
 import AlertaLog from "../model/alertaLog"
 
