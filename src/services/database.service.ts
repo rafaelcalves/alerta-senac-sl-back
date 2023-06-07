@@ -6,7 +6,10 @@ export const collections: { alertas?: mongoDB.Collection<AlertaLog> } = {}
 
 export async function connectToDatabase () {
     dotenv.config();
- 
+    if(!process.env.DB_CONN_STRING) throw new Error("Não há DB_CONN_STRING no .env")
+    if(!process.env.ALERTALOG_COLLECTION_NAME) throw new Error("Não há ALERTALOG_COLLECTION_NAME no .env")
+    if(!process.env.DB_NAME) throw new Error("Não há DB_NAME no .env")
+
     const client: mongoDB.MongoClient = new mongoDB.MongoClient(process.env.DB_CONN_STRING);
             
     await client.connect();
